@@ -24,10 +24,18 @@ const childVariants = {
   },
   animate: {
     opacity: 1,
+    transition: {
+      type: 'spring',
+      // delay: 0.5,
+      mass: 0.8,
+      damping: 8,
+      when: 'beforeChildren',
+      staggerChildren: 0.8
+    }
   },
   whileHover: {
     fontWeight: 'bold',
-    scale: 1.2
+    scale: 1.1
   }
 }
 
@@ -40,14 +48,14 @@ const Order = ({ pizza }) => {
       whileHover="whileHover"
     >
       <h2>Thank you for your order</h2>
-      <motion.p
-        variants={childVariants}
-        initial="initial"
-        animate="animate"
-        whileHover="whileHover"
+      <p
+      // variants={childVariants}
+      // initial="initial"
+      // animate="animate"
+      // whileHover="whileHover"
       >
-        You ordered a {pizza.base} pizza with:
-        </motion.p>
+        You ordered a <span>{pizza.base}</span> pizza with:
+        </p>
       <motion.div
         variants={childVariants}
         initial="initial"
