@@ -34,8 +34,11 @@ const childVariants = {
     }
   },
   whileHover: {
-    fontWeight: 'bold',
-    scale: 1.1
+    scale: 1.1,
+    transition: {
+      yoyo: Infinity,
+      duration: 0.2
+    }
   }
 }
 
@@ -45,17 +48,12 @@ const Order = ({ pizza }) => {
       variants={containerVariants}
       initial="initial"
       animate="animate"
-      whileHover="whileHover"
+    // whileHover="whileHover"
     >
       <h2>Thank you for your order</h2>
-      <p
-      // variants={childVariants}
-      // initial="initial"
-      // animate="animate"
-      // whileHover="whileHover"
-      >
+      <p>
         You ordered a <span>{pizza.base}</span> pizza with:
-        </p>
+      </p>
       <motion.div
         variants={childVariants}
         initial="initial"
