@@ -1,20 +1,22 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const containerVariants = {
   initial: {
-    y: '5vh',
-    borderRadius: '15px'
+    y: '-10vh', opacity: 0
   },
   animate: {
-    y: 0,
-    borderRadius: '15px',
-    padding: '25px'
+    y: 1, opacity: 1,
+    transition: {
+      ease: 'easeIn',
+      delay: 0.5
+    }
   },
-  whileHover: {
-    borderRadius: '15px',
-    backgroundColor: 'rgba(255, 255, 255, 0.25)',
-    cursor: 'pointer'
+  exit: {
+    x: '-100vw',
+    transition: {
+      ease: 'easeIn'
+    }
   }
 }
 
@@ -42,27 +44,34 @@ const childVariants = {
   }
 }
 
-const Order = ({ pizza }) => {
+const Order = ({ pizza, setShowModal }) => {
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowModal(true)
+    }, 1250)
+  }, [setShowModal])
+
   return (
-    <motion.div className="container order"
-      variants={containerVariants}
-      initial="initial"
-      animate="animate"
-    // whileHover="whileHover"
-    >
-      <h2>Thank you for your order</h2>
-      <p>
-        You ordered a <span>{pizza.base}</span> pizza with:
-      </p>
-      <motion.div
-        variants={childVariants}
+    <AnimatePresence>
+      <motion.div className="container order"
+        variants={containerVariants}
         initial="initial"
         animate="animate"
-        whileHover="whileHover"
+        exit="exit"
       >
-        {pizza.toppings.map(topping => <div key={topping}>{topping}</div>)}
+        <h2>Thank you for your order</h2>
+        <p>You ordered a <span>{pizza.base}</span> pizza with:</p>
+        <motion.ul
+          variants={childVariants}
+          initial="initial"
+          animate="animate"
+          whileHover="whileHover"
+        >
+          {pizza.toppings.map(topping => <li key={topping}>{topping}</li>)}
+        </motion.ul>
       </motion.div>
-    </motion.div>
+    </AnimatePresence>
   )
 }
 

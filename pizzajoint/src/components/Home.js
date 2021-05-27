@@ -4,12 +4,22 @@ import { motion } from 'framer-motion';
 
 const containerVariants = {
   initial: {
-    y: '-3vh', opacity: 0
+    y: '-10vh', opacity: 0
   },
   animate: {
     y: 1, opacity: 1,
-    transition: { delay: 0.5 }
+    transition: {
+      ease: 'easeIn',
+      delay: 0.5,
+      duration: 0.15
+    }
   },
+  exit: {
+    x: '-100vw',
+    transition: {
+      ease: 'easeIn'
+    }
+  }
 }
 
 const h2Variants = {
@@ -45,6 +55,7 @@ const Home = () => {
       variants={containerVariants}
       initial="initial"
       animate="animate"
+      exit="exit"
     >
       <motion.h2
         variants={h2Variants}

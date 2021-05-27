@@ -1,27 +1,79 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+const headerVariants = {
+  initial: {
+    opacity: 0,
+    rotate: -90,
+  },
+  animate: {
+    opacity: 1,
+    rotate: 0,
+    transition: {
+      duration: 0.75
+    }
+  }
+}
+
+const svgVariants = {
+  initial: {
+    opacity: 0,
+    scale: 1,
+  },
+  animate: {
+    opacity: 1,
+    scale: [1.2, 0.7, 1.1, 1],
+  }
+}
+
+const pathVariants = {
+  initial: {
+    opacity: 0,
+    pathLength: 0,
+  },
+  animate: {
+    opacity: 1,
+    pathLength: 1,
+    transition: {
+      duration: 1,
+      ease: "easeOut"
+    }
+  }
+}
+
 const Header = () => {
   return (
     <header>
       <motion.div className="logo"
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1.0 }}
+        variants={headerVariants}
+        initial="initial"
+        animate="animate"
       >
-        <svg className="pizza-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-          <path
+        <motion.svg className="pizza-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
+          variatns={svgVariants}
+          initial="initial"
+          animate="animate"
+        >
+          <motion.path
             fill="none"
             d="M40 40 L80 40 C80 40 80 80 40 80 C40 80 0 80 0 40 C0 40 0 0 40 0Z"
+            variants={pathVariants}
+            initial="initial"
+            animate="animate"
           />
-          <path
+          <motion.path
             fill="none"
             d="M50 30 L50 -10 C50 -10 90 -10 90 30 Z"
+            variants={pathVariants}
+            initial="initial"
+            animate="animate"
           />
-        </svg>
+        </motion.svg>
       </motion.div>
       <motion.div className="title"
         initial={{ opacity: 0, y: '-10vh' }}
         animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, type: 'spring', stiffness: 120 }}
       >
         <h1>
           Pizza Joint

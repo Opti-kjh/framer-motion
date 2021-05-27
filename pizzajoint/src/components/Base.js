@@ -4,12 +4,19 @@ import { motion } from 'framer-motion';
 
 const containerVariants = {
   initial: {
-    y: '-1vh', opacity: 0
+    y: '-10vh', opacity: 0
   },
   animate: {
-    y: 0, opacity: 1,
+    y: 1, opacity: 1,
     transition: {
-      delay: '0.2', duration: '0.2', type: 'tween'
+      ease: 'easeIn',
+      delay: 0.5
+    }
+  },
+  exit: {
+    x: '-100vw',
+    transition: {
+      ease: 'easeIn'
     }
   }
 }
@@ -48,6 +55,7 @@ const Base = ({ addBase, pizza }) => {
       variants={containerVariants}
       initial="initial"
       animate="animate"
+      exit="exit"
     >
 
       <h3>Step 1: Choose Your Base</h3>

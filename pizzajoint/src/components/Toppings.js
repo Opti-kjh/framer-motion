@@ -2,6 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
+const containerVariants = {
+  initial: {
+    y: '-10vh', opacity: 0
+  },
+  animate: {
+    y: 1, opacity: 1,
+    transition: {
+      ease: 'easeIn',
+      delay: 0.5
+    }
+  },
+  exit: {
+    x: '-100vw',
+    transition: {
+      ease: 'easeIn'
+    }
+  }
+}
+
 const liVariants = {
   initial: {
     x: '-1.5vw', opacity: 0
@@ -33,7 +52,12 @@ const Toppings = ({ addTopping, pizza }) => {
   let toppings = ['mushrooms', 'peppers', 'onions', 'olives', 'extra cheese', 'tomatoes'];
 
   return (
-    <div className="toppings container">
+    <motion.div className="toppings container"
+      variants={containerVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
 
       <h3>Step 2: Choose Toppings</h3>
       <ul>
@@ -62,7 +86,7 @@ const Toppings = ({ addTopping, pizza }) => {
         </motion.button>
       </Link>
 
-    </div>
+    </motion.div>
   )
 }
 
